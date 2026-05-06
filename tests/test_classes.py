@@ -1,3 +1,5 @@
+from typing import List, Optional
+
 import pytest
 
 from gittensor.classes import FileChange, PullRequest
@@ -96,7 +98,7 @@ def test_is_test_file_detects_conftest_at_any_depth(filename):
     assert _file_change(filename).is_test_file() is True
 
 
-def _issue_node(number: int, name_with_owner: str | None) -> dict:
+def _issue_node(number: int, name_with_owner: Optional[str]) -> dict:
     node = {
         'number': number,
         'title': f'Issue #{number}',
@@ -115,7 +117,7 @@ def _issue_node(number: int, name_with_owner: str | None) -> dict:
     return node
 
 
-def _pr_data_with_issues(issue_nodes: list[dict]) -> dict:
+def _pr_data_with_issues(issue_nodes: List[dict]) -> dict:
     return {
         'number': 42,
         'repository': {'owner': {'login': 'entrius'}, 'name': 'gittensor'},
